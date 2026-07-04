@@ -14,7 +14,7 @@ app.post("/webhook", (req, res) => {
 });
 
 // Verificação do webhook
-app.get("/cloud-api", (req, res) => {
+app.get("/webhook", (req, res) => {
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
   const challenge = req.query["hub.challenge"];
@@ -24,6 +24,7 @@ app.get("/cloud-api", (req, res) => {
     return res.status(200).send(challenge);
   }
 
+  console.log(req.url);
   return res.sendStatus(403);
 });
 
