@@ -1,4 +1,4 @@
-const VERIFY_TOKEN = "ZZ429683C4C977415CAAFCCE10F7D57E11";
+const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
 export default function handler(req, res) {
   if (req.method === "GET") {
@@ -12,13 +12,13 @@ export default function handler(req, res) {
       return res.status(200).send(challenge);
     }
 
-    return res.sendStatus(403);
+    return res.status(403).send("Forbidden");
   }
 
   if (req.method === "POST") {
     console.log("WEBHOOK:", req.body);
-    return res.sendStatus(200);
+    return res.status(200).send("EVENT_RECEIVED");
   }
 
-  return res.sendStatus(405);
+  return res.status(405).send("Method Not Allowed");
 }
