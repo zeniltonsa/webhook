@@ -1,13 +1,10 @@
 export default function handler(req, res) {
   if (req.method === "GET") {
-  
     const response = {
-      "revoked": [
-        "ABCD-ZZZZ"
-      ]
+      revoked: ["ABCD-ZZZZ"],
     };
-  
-    return res.status(200).send(response);
+
+    return res.status(200).send(JSON.stringify(response));
   }
 
   return res.sendStatus(405);
